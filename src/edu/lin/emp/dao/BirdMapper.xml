@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.lin.emp.dao.BirdMapper">
+
+	<!--int save(Map<String, Object> params);-->
+	<!--<parameterMap type="java.util.Map" id="saveUserMap">
+		<parameter property="un" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="ac" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="pw" jdbcType="INTEGER" mode="IN" />
+		<parameter property="se" jdbcType="INTEGER" mode="IN" />
+	</parameterMap>
+	<insert id="save" statementType="CALLABLE" parameterMap="saveUserMap">
+		{call save(?,?,?,?)}
+	</insert>-->
+
+	
+	<!-- int login(Map<String, Object> params); -->
+	<parameterMap type="java.util.Map" id="loginMap">
+		<parameter property="ba" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="bp" jdbcType="VARCHAR" mode="IN" />
+	</parameterMap>
+	<select id="login" statementType="CALLABLE"  resultType="INTEGER" parameterMap="loginMap">
+		{call loginBird(?,?)}
+	</select>
+
+	<!--public List<User> list();-->
+	<select id="birdList" resultType="Bird">
+		select * from bird
+	</select>
+
+	<parameterMap type="java.util.Map" id="deleteMap">
+		<parameter property="id" jdbcType="INTEGER" mode="IN" />
+	</parameterMap>
+	<delete id="delete" statementType="CALLABLE" parameterMap="deleteMap">
+		{call deleteBird(?)}
+	</delete>
+
+	<parameterMap type="java.util.Map" id="saveMap">
+		<parameter property="bn" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="ba" jdbcType="VARCHAR" mode="IN" />
+		<parameter property="bp" jdbcType="VARCHAR" mode="IN" />
+	</parameterMap>
+	<insert id="save" statementType="CALLABLE" parameterMap="saveMap">
+		{call saveBird(?,?,?)}
+	</insert>
+	<!--int updateUser(User user);-->
+	<!--<update id="update">
+		update `user` set uname=#{uname},account=#{account},pwd=#{pwd},sex=#{sex}
+	</update>-->
+</mapper>
